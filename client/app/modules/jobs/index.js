@@ -4,7 +4,7 @@ import config from './config';
 
 import jobController from './controllers/job';
 import addController from './controllers/add_job';
-import jobsController from './controllers/job';
+import jobsController from './controllers/my_jobs';
 
 let jobs = angular.module('tiy.jobs', []);
 
