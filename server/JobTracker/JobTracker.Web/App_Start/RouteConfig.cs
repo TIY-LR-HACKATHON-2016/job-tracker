@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Security.Policy;
+using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace JobTracker.Web
@@ -9,9 +10,12 @@ namespace JobTracker.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            
+
             routes.MapRoute("Default", "{controller}/{action}/{id}",
                new { controller = "users", action = "about", id = UrlParameter.Optional }
                );
+
 
 
         }

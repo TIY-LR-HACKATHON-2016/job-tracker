@@ -11,6 +11,6 @@ namespace JobTracker.Web.Models
         public User User  { get; set; }
         
     }
-
+    
     
 }
