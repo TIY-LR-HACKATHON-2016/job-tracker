@@ -1,29 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 
 namespace JobTracker.Web.Models
 {
-    public class User
+    public class Job
     {
         public int Id { get; set; }
+        public string UserId { get; set; }
         [Required]
-        public string FirstName { get; set; }
+        public string CompanyTitle { get; set; }
+        public string Url { get; set; }
         [Required]
-        public string LastName { get; set; }
+        public DateTime Date { get; set; }
         [Required]
-        public string Resume { get; set; }
-        public string CoverLetter { get; set; }
+        public string JobTitle { get; set; }
+        public string PhoneNumber { get; set; }
         public string Address { get; set; }
-        public string PhoneNum { get; set; }
         [Required]
-        public string Email { get; set; }
-
+        public string Description { get; set; }
         public virtual ICollection<Interview> Interviews { get; set; } = new List<Interview>();
-        public virtual ICollection<Job> Jobs { get; set; } = new List<Job>(); 
-
-
     }
 }
