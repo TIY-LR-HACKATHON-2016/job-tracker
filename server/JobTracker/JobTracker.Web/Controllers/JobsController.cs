@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using JobTracker.Web.Models;
 
@@ -13,16 +9,15 @@ namespace JobTracker.Web.Controllers
 {
     public class JobsController : Controller
     {
-        private JobTrackerWebDbContext db = new JobTrackerWebDbContext();
+        private readonly JobTrackerWebDbContext db = new JobTrackerWebDbContext();
 
         // GET: Jobs
         public ActionResult Index()
         {
             return Json(db.Jobs.ToList(), JsonRequestBehavior.AllowGet);
         }
-       
-           
-           
+
+
         // GET: Jobs/Details/5
         public ActionResult Details(int? id)
         {
@@ -30,7 +25,7 @@ namespace JobTracker.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = db.Jobs.Find(id);
+            var job = db.Jobs.Find(id);
             if (job == null)
             {
                 return HttpNotFound();
@@ -38,56 +33,34 @@ namespace JobTracker.Web.Controllers
             return Json(job, JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpGet]
-        //public ActionResult Create()
-        //{
-        //    return Json(JsonRequestBehavior.AllowGet);
-        //}
-        //// GET: Jobs/Create
-        /// 
-        /// 
         [HttpPost]
         public ActionResult Create(CreateJobVM vm)
         {
-
-        // POST: Jobs/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserId,CompanyTitle,Url,Date,JobTitle,PhoneNumber,Address,Description")] Job job)
-        {
-                db.Jobs.Select(job => new
+            if (!ModelState.IsValid)
             {
-                    JobTitle = job.JobTitle,
-                    CompanyTitle = job.CompanyTitle,
-                    Address = job.Address,
-                    Status = job.Status,
-                    Url = job.Url,
-                    Description = job.Description,
-                    PhoneNumber = job.PhoneNumber,
-                    Date = job.Date
-
-
-                });
-                db.Jobs.Add(entry);
-
-                return Json(entry, JsonRequestBehavior.AllowGet);
-
-
-
-            }
-            //{
-            //    db.Jobs.Add(newJob);
-            //    return RedirectToAction("Index");
-            //}
-            //else
-            //{
-            //    return Json(newJob,JsonRequestBehavior.AllowGet);
-            //}
+                var errorList = (from item in ModelState
+                    where item.Value.Errors.Any()
+                    select item.Value.Errors[0].ErrorMessage).ToList();
+                return Json(errorList);
             }
 
-            return Json(job);
+            var newJob = new Job
+            {
+                JobTitle = vm.JobTitle,
+                CompanyTitle = vm.CompanyTitle,
+                Address = vm.Address,
+                Status = vm.Status,
+                Url = vm.Url,
+                Description = vm.Description,
+                PhoneNumber = vm.PhoneNumber,
+                Date = vm.Date
+            };
+
+            db.Jobs.Add(newJob);
+            db.SaveChanges();
+
+
+            return Json(newJob);
         }
 
 
@@ -98,7 +71,7 @@ namespace JobTracker.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = db.Jobs.Find(id);
+            var job = db.Jobs.Find(id);
             if (job == null)
             {
                 return HttpNotFound();
@@ -111,7 +84,8 @@ namespace JobTracker.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserId,CompanyTitle,Url,Date,JobTitle,PhoneNumber,Address,Description")] Job job)
+        public ActionResult Edit(
+            [Bind(Include = "Id,UserId,CompanyTitle,Url,Date,JobTitle,PhoneNumber,Address,Description")] Job job)
         {
             if (ModelState.IsValid)
             {
@@ -129,7 +103,7 @@ namespace JobTracker.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = db.Jobs.Find(id);
+            var job = db.Jobs.Find(id);
             if (job == null)
             {
                 return HttpNotFound();
@@ -142,7 +116,7 @@ namespace JobTracker.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Job job = db.Jobs.Find(id);
+            var job = db.Jobs.Find(id);
             db.Jobs.Remove(job);
             db.SaveChanges();
             return RedirectToAction("Index");
