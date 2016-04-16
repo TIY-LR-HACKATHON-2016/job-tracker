@@ -22,6 +22,7 @@ namespace JobTracker.Web.Models
         public string Address { get; set; }
         [Required]
         public string Description { get; set; }
+
         public virtual ICollection<Interview> Interviews { get; set; } = new List<Interview>();
     }
 }
