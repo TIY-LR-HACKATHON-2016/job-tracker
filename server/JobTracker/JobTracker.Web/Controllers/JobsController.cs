@@ -56,7 +56,7 @@ namespace JobTracker.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(job);
+            return Json(job);
         }
 
         //[HttpPost]
@@ -93,7 +93,7 @@ namespace JobTracker.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(job);
+            return Json(job);
         }
 
         // POST: Jobs/Edit/5
@@ -109,7 +109,7 @@ namespace JobTracker.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(job);
+            return Json(job);
         }
 
         // GET: Jobs/Delete/5
@@ -124,7 +124,7 @@ namespace JobTracker.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(job);
+            return Json(job);
         }
 
         // POST: Jobs/Delete/5

@@ -26,8 +26,7 @@ namespace JobTracker.Web.Controllers
             user.Resume = Faker.TextFaker.Sentences(20);
 
             return Json(user,JsonRequestBehavior.AllowGet);
-            
-        }
+         }
 
     }
 }
