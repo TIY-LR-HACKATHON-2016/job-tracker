@@ -59,15 +59,27 @@ namespace JobTracker.Web.Controllers
             return View(job);
         }
 
-        [HttpPost]
-        public virtual ActionResult Edit(Status? status)
-        {
-            if (status == null)
-            {
-                
-            }
-            return View();
-        }
+        //[HttpPost]
+        //public virtual ActionResult Edit(Status? status)
+        //{
+        //    if (status == null)
+        //    {
+        //        Status saved = Status.Saved;
+        //    }
+        //    else if
+        //    {
+        //        Status applied = Status.Applied;
+        //    }
+        //    else if
+        //    {
+        //        Status scheduled = Status.Scheduled;
+        //    }
+        //    else if
+        //    {
+        //        Status interviewed = Status.Interviewed;
+        //    }
+        //    return View();
+        //}
 
         // GET: Jobs/Edit/5
         public ActionResult Edit(int? id)
