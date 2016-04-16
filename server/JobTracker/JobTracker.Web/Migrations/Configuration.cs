@@ -1,3 +1,7 @@
+using Faker;
+using FizzWare.NBuilder;
+using JobTracker.Web.Models;
+
 namespace JobTracker.Web.Migrations
 {
     using System;
@@ -26,6 +30,20 @@ namespace JobTracker.Web.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            if (!context.Jobs.Any())
+            {
+                var jobs = Builder<Job>.CreateListOfSize(10)
+                    .All()
+                    .With(x => x.CompanyTitle = CompanyFaker.BS())
+                    .With(x => x.JobTitle = CompanyFaker.Name())
+                    .With(x => x.Address = Address.StreetAddress())
+                    .With(x => x.Description = TextFaker.Sentences(3))
+                    .With(x => x.PhoneNumber = PhoneFaker.Phone())
+                    .With(x => x.Url = InternetFaker.Url())
+                    .Build();
+                context.Jobs.AddRange(jobs);
+            }
         }
     }
 }
