@@ -10,12 +10,10 @@ namespace JobTracker.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute("Default", "{controller}/{action}/{id}",
-                new {controller = "Users", action = "Index", id = UrlParameter.Optional}
-                );
-
-            routes.MapRoute("Default", "{controller}/{action}/{id}",
                 new {controller = "Jobs", action = "Index", id = UrlParameter.Optional}
                 );
+
+           
         }
     }
 }

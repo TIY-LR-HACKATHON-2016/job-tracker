@@ -17,9 +17,10 @@ namespace JobTracker.Web.Controllers
         // GET: Jobs
         public ActionResult Index()
         {
-            return View(db.Jobs.ToList());
+            return Json(db.Jobs.ToList(),JsonRequestBehavior.AllowGet);
         }
-
+       
+           
         // GET: Jobs/Details/5
         public ActionResult Details(int? id)
         {
@@ -32,7 +33,7 @@ namespace JobTracker.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(job);
+            return Json(job);
         }
 
         // GET: Jobs/Create
