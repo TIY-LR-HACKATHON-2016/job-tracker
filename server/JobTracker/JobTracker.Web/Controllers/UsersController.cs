@@ -28,5 +28,10 @@ namespace JobTracker.Web.Controllers
             return Json(user,JsonRequestBehavior.AllowGet);
          }
 
+        //[HttpPut]
+        //public ActionResult Edit()
+        //{
+            
+        //}
     }
 }
