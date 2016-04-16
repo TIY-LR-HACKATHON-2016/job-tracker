@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -53,7 +54,7 @@ namespace JobTracker.Web.Controllers
                 Url = vm.Url,
                 Description = vm.Description,
                 PhoneNumber = vm.PhoneNumber,
-                Date = vm.Date
+                Date = DateTime.Now
             };
 
             db.Jobs.Add(newJob);
