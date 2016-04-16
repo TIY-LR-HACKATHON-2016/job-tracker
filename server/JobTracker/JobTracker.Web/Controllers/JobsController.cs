@@ -40,8 +40,8 @@ namespace JobTracker.Web.Controllers
             if (!ModelState.IsValid)
             {
                 var errorList = (from item in ModelState
-                    where item.Value.Errors.Any()
-                    select item.Value.Errors[0].ErrorMessage).ToList();
+                                 where item.Value.Errors.Any()
+                                 select item.Value.Errors[0].ErrorMessage).ToList();
                 return Json(errorList);
             }
 
@@ -59,8 +59,7 @@ namespace JobTracker.Web.Controllers
 
             db.Jobs.Add(newJob);
             db.SaveChanges();
-
-
+            
             return Json(newJob);
         }
 

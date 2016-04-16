@@ -34,6 +34,7 @@ namespace JobTracker.Web.Migrations
 
             
             }
+
         }
     }
 }

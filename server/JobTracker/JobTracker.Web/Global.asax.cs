@@ -10,6 +10,15 @@ namespace JobTracker.Web
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+
+        protected void Application_BeginRequest()
+        {
+            if (Request.HttpMethod == "OPTIONS")
+            {
+                Request.Headers.Add("Content-Type", "application/json");
+            }
+        }
+
         protected void Application_Start()
         {
 
@@ -17,6 +26,8 @@ namespace JobTracker.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+
         }
 
     }
