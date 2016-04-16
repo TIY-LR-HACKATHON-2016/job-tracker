@@ -21,5 +21,9 @@ namespace JobTracker.Web.Models
         [Required]
         public string Email { get; set; }
 
+        public virtual ICollection<Interview> Interviews { get; set; } = new List<Interviews>();
+        public virtual ICollection<Job> Jobs { get; set; } = new List<Job>(); 
+
+
     }
 }
