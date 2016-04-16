@@ -17,10 +17,10 @@ namespace JobTracker.Web.Controllers
         // GET: Jobs
         public ActionResult Index()
         {
-            return Json(db.Jobs.ToList(),JsonRequestBehavior.AllowGet);
+            return Json(db.Jobs.ToList(), JsonRequestBehavior.AllowGet);
         }
-       
-           
+
+
         // GET: Jobs/Details/5
         public ActionResult Details(int? id)
         {
@@ -33,31 +33,70 @@ namespace JobTracker.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return Json(job);
+            return Json(job, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Jobs/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Jobs/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpGet]
+        //public ActionResult Create()
+        //{
+        //    return Json(JsonRequestBehavior.AllowGet);
+        //}
+        //// GET: Jobs/Create
+        /// 
+        /// 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserId,CompanyTitle,Url,Date,JobTitle,PhoneNumber,Address,Description")] Job job)
+        public ActionResult Create(CreateJobVM vm)
         {
-            if (ModelState.IsValid)
-            {
-                db.Jobs.Add(job);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            return Json(job);
+
+            var entry = new Job();
+            {
+                db.Jobs.Select(job => new
+                {
+                    JobTitle = job.JobTitle,
+                    CompanyTitle = job.CompanyTitle,
+                    Address = job.Address,
+                    Status = job.Status,
+                    Url = job.Url,
+                    Description = job.Description,
+                    PhoneNumber = job.PhoneNumber,
+                    Date = job.Date
+
+
+                });
+                db.Jobs.Add(entry);
+
+                return Json(entry, JsonRequestBehavior.AllowGet);
+
+
+
+            }
+            //{
+            //    db.Jobs.Add(newJob);
+            //    return RedirectToAction("Index");
+            //}
+            //else
+            //{
+            //    return Json(newJob,JsonRequestBehavior.AllowGet);
+            //}
         }
+
+        ////POST: Jobs/Create
+        ////To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "Id,UserId,CompanyTitle,Url,Date,JobTitle,PhoneNumber,Address,Description")] Job job)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Jobs.Add(job);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    return Json(job);
+        //}
 
         //[HttpPost]
         //public virtual ActionResult Edit(Status? status)
@@ -93,7 +132,7 @@ namespace JobTracker.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return Json(job);
+            return Json(job, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Jobs/Edit/5
@@ -109,7 +148,7 @@ namespace JobTracker.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return Json(job);
+            return Json(job, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Jobs/Delete/5
@@ -124,7 +163,7 @@ namespace JobTracker.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return Json(job);
+            return Json(job, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Jobs/Delete/5
