@@ -29,5 +29,10 @@ namespace JobTracker.Web.Controllers
             
         }
 
+        //[HttpPut]
+        //public ActionResult Edit()
+        //{
+            
+        //}
     }
 }
