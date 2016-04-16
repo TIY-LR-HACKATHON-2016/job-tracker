@@ -9,6 +9,7 @@ namespace JobTracker.Web.Models
         public DateTime Date { get; set; }
         public Job Job { get; set; }
         public User User  { get; set; }
+        
     }
 
     

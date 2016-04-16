@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using JobTracker.Web.Models;
 
 namespace JobTracker.Web.Controllers
+
 {
     public class JobsController : Controller
     {
@@ -20,6 +21,7 @@ namespace JobTracker.Web.Controllers
             return Json(db.Jobs.ToList(),JsonRequestBehavior.AllowGet);
         }
        
+
            
         // GET: Jobs/Details/5
         public ActionResult Details(int? id)
@@ -42,11 +44,12 @@ namespace JobTracker.Web.Controllers
             return View();
         }
 
+        
         // POST: Jobs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public ActionResult Create([Bind(Include = "Id,UserId,CompanyTitle,Url,Date,JobTitle,PhoneNumber,Address,Description")] Job job)
         {
             if (ModelState.IsValid)
@@ -56,30 +59,9 @@ namespace JobTracker.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            return Json(job);
+            return Json(job, JsonRequestBehavior.AllowGet);
         }
-
-        //[HttpPost]
-        //public virtual ActionResult Edit(Status? status)
-        //{
-        //    if (status == null)
-        //    {
-        //        Status saved = Status.Saved;
-        //    }
-        //    else if
-        //    {
-        //        Status applied = Status.Applied;
-        //    }
-        //    else if
-        //    {
-        //        Status scheduled = Status.Scheduled;
-        //    }
-        //    else if
-        //    {
-        //        Status interviewed = Status.Interviewed;
-        //    }
-        //    return View();
-        //}
+        
 
         // GET: Jobs/Edit/5
         public ActionResult Edit(int? id)
