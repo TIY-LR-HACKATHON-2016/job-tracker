@@ -93,7 +93,7 @@ namespace JobTracker.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return Json(job, JsonRequestBehavior.AllowGet);
+            return Json(job);
         }
 
         // GET: Jobs/Delete/5
