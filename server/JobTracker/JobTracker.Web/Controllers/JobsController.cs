@@ -59,6 +59,16 @@ namespace JobTracker.Web.Controllers
             return View(job);
         }
 
+        [HttpPost]
+        public virtual ActionResult Edit(Status? status)
+        {
+            if (status == null)
+            {
+                
+            }
+            return View();
+        }
+
         // GET: Jobs/Edit/5
         public ActionResult Edit(int? id)
         {

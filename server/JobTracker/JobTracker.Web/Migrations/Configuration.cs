@@ -43,6 +43,8 @@ namespace JobTracker.Web.Migrations
                     .With(x => x.Url = InternetFaker.Url())
                     .Build();
                 context.Jobs.AddRange(jobs);
+
+            
             }
         }
     }
