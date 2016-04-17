@@ -10,7 +10,7 @@ using JobTracker.Web.Models;
 
 namespace JobTracker.Web.Controllers
 {
-    public class MVCJobsController : Controller
+    public class MvcJobsController : Controller
     {
         private readonly JobTrackerWebDbContext db = new JobTrackerWebDbContext();
 
