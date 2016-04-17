@@ -126,9 +126,11 @@ namespace JobTracker.Web.Controllers
             
             var model = new
             {
+                
                newInterview.Date,
                newInterview.Id,
                JobId = newInterview.Job.Id
+               
                
             };
             return Json(model);

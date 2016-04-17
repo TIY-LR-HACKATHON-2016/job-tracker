@@ -30,7 +30,7 @@ namespace JobTracker.Web.Controllers
                 ApplicantName = j.User.FirstName + " " + j.User.LastName
                 //Todo my need interviews here j.Interviews.Select()
             });
-            return View();
+            return View("Index");
         }
 
 
@@ -56,7 +56,7 @@ namespace JobTracker.Web.Controllers
                 job.Url,
                 ApplicantName = $"{job.User.FirstName} {job.User.LastName}"
             };
-            return View();
+            return View("Details");
         }
 
         [HttpPost]
@@ -67,7 +67,7 @@ namespace JobTracker.Web.Controllers
                 var errorList = (from item in ModelState
                                  where item.Value.Errors.Any()
                                  select item.Value.Errors[0].ErrorMessage).ToList();
-                return View();
+                return View(errorList);
             }
 
             var newJob = new Job
@@ -100,7 +100,7 @@ namespace JobTracker.Web.Controllers
                 StatusDate = DateTime.Now
             };
 
-            return View();
+            return View("Create");
         }
 
 
@@ -133,7 +133,7 @@ namespace JobTracker.Web.Controllers
 
             };
 
-            return View();
+            return View("CreateInterview");
         }
     }
 }
