@@ -178,6 +178,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CreateJobVM.cs" />
     <Compile Include="Controllers\JobsController.cs" />
+    <Compile Include="Controllers\MVCJobsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -191,6 +192,7 @@
     <Compile Include="Models\Interview.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="MVCJobTrackerWebContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +240,12 @@
     <Content Include="Views\Interviews\Details.cshtml" />
     <Content Include="Views\Interviews\Edit.cshtml" />
     <Content Include="Views\Interviews\Index.cshtml" />
+    <Content Include="Views\MVCJobs\Create.cshtml" />
+    <Content Include="Views\MVCJobs\Delete.cshtml" />
+    <Content Include="Views\MVCJobs\Details.cshtml" />
+    <Content Include="Views\MVCJobs\Edit.cshtml" />
+    <Content Include="Views\MVCJobs\Index.cshtml" />
+    <Content Include="Views\MVCJobs\CreateInterview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

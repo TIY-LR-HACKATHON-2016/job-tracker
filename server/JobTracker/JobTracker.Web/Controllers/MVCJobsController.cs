@@ -1,23 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
-using FizzWare.NBuilder.Extensions;
 using JobTracker.Web.Models;
 
 namespace JobTracker.Web.Controllers
-
 {
-    public class JobsController : Controller
+    public class MVCJobsController : Controller
     {
         private readonly JobTrackerWebDbContext db = new JobTrackerWebDbContext();
+
 
         public ActionResult Index()
         {
             var model = db.Jobs.Select(j => new
             {
-                j.Id, 
+                j.Id,
                 j.JobTitle,
                 j.Address,
                 j.CompanyTitle,
@@ -28,7 +30,7 @@ namespace JobTracker.Web.Controllers
                 ApplicantName = j.User.FirstName + " " + j.User.LastName
                 //Todo my need interviews here j.Interviews.Select()
             });
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return View();
         }
 
 
@@ -54,18 +56,18 @@ namespace JobTracker.Web.Controllers
                 job.Url,
                 ApplicantName = $"{job.User.FirstName} {job.User.LastName}"
             };
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return View();
         }
 
-       [HttpPost]
+        [HttpPost]
         public ActionResult Create(CreateJobVM vm)
         {
             if (!ModelState.IsValid)
             {
                 var errorList = (from item in ModelState
-                    where item.Value.Errors.Any()
-                    select item.Value.Errors[0].ErrorMessage).ToList();
-                return Json(errorList);
+                                 where item.Value.Errors.Any()
+                                 select item.Value.Errors[0].ErrorMessage).ToList();
+                return View();
             }
 
             var newJob = new Job
@@ -98,8 +100,9 @@ namespace JobTracker.Web.Controllers
                 StatusDate = DateTime.Now
             };
 
-             return Json(model);
+            return View();
         }
+
 
         [HttpPost]
         public ActionResult CreateInterview(CreateInterviewVM vm)
@@ -123,81 +126,14 @@ namespace JobTracker.Web.Controllers
             };
             db.Interviews.Add(newInterview);
             db.SaveChanges();
-            
-            return Json(newInterview);
-        }
-
-
-        [HttpPost]
-        public ActionResult Edit(EditJobVM vm)
-        {
-            
-            if (!ModelState.IsValid)
-            {
-                var errorList = (from item in ModelState
-                    where item.Value.Errors.Any()
-                    select item.Value.Errors[0].ErrorMessage).ToList();
-                return Json(errorList);
-            }
-
-            var job = db.Jobs.Find(vm.JobId);
-            if (job == null)
-            {
-                return HttpNotFound();
-            }
-
-            job.JobTitle = vm.JobTitle;
-            job.CompanyTitle = vm.CompanyTitle;
-            job.Address = vm.Address;
-            job.Url = vm.Url;
-            job.Description = vm.Description;
-            job.PhoneNumber = vm.PhoneNumber;
-
-            var newStatus = (JobStatus) Enum.Parse(typeof (JobStatus), vm.Status);
-            if (job.Status != newStatus)
-            {
-                job.Status = newStatus;
-                job.StatusDate = DateTime.Now;
-            }
-
-            db.SaveChanges();
 
             var model = new
             {
-                vm.JobTitle,
-                vm.CompanyTitle,
-                vm.Address,
-                Status = JobStatus.Saved,
-                vm.Url,
-                vm.Description,
-                vm.PhoneNumber,
-                Created = DateTime.Now,
-                StatusDate = DateTime.Now
+                vm.Date
+
             };
 
-            return Json(model);
-        }
-
-
-        // POST: Jobs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            var job = db.Jobs.Find(id);
-            db.Jobs.Remove(job);
-            db.SaveChanges();
-            return Content("OK!");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            return View();
         }
     }
-
-   
 }
