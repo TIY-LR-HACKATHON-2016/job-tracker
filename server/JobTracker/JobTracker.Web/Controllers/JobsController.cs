@@ -112,7 +112,7 @@ namespace JobTracker.Web.Controllers
                 return Json(errorList);
             }
 
-            Job job = db.Jobs.Where(j => j.Id == vm.JobId).FirstOrDefault();
+            Job job = db.Jobs.FirstOrDefault(j => j.Id == vm.JobId);
             var newInterview = new Interview()
             {
                 Id = vm.JobId,
@@ -124,7 +124,14 @@ namespace JobTracker.Web.Controllers
             db.Interviews.Add(newInterview);
             db.SaveChanges();
             
-            return Json(newInterview);
+            var model = new
+            {
+               newInterview.Date,
+               newInterview.Id,
+               JobId = newInterview.Job.Id
+               
+            };
+            return Json(model);
         }
 
 
