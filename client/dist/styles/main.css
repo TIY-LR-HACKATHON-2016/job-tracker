@@ -122,3 +122,9 @@ a:-webkit-any-link {
     background-color: #6fbab6;
     border-radius: 5px;
     color: white; }
+
+.addInterview {
+  width: 80%;
+  margin: 0 auto; }
+  .addInterview .addInterviewContent {
+    text-align: justify; }

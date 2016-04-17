@@ -8,8 +8,8 @@
     <div class="jobDetail">Job Description: {{jobCtrl.job.Description}}</div>
     <div class="jobDetail">Phone number: {{jobCtrl.job.PhoneNumber}}</div>
     <div class="jobDetail">Website: {{jobCtrl.job.url}}</div>
-    <div class="jobDetail" ng-repeat="interview in jobCtrl.interviews">
+    <div class="jobDetail" ng-repeat="interview in jobCtrl.interviews">Interview scheduled for: {{interview.Date.split("(")[1].split(")")[0] | date}}</div>
     <a ui-sref="my_jobs">Go back to your list of jobs</a>
-</div>
+  </div>
 <a ui-sref="add_interview({ Id: jobCtrl.id })"><div class="linkButton">Add Interview</div></a>
 </div>

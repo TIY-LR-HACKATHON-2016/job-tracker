@@ -18,7 +18,7 @@ class JobController{
     .then((response) => {
       console.log(response.data);
       this.job=response.data;
-      this.interviews=job.interviews;
+      this.interviews=this.job.Interviews;
     });
 
   }
