@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using JobTracker.Web.Models;
@@ -19,13 +20,9 @@ namespace JobTracker.Web.Controllers
                 j.CompanyTitle,
                 j.Description,
                 j.PhoneNumber,
-                j.Status,
+                Status = j.Status.ToString(),
                 j.Url,
-                j.Applied,
-                j.Interviewed,
-                j.Saved,
-                j.Scheduled,
-                j.UserId
+                ApplicantName = $"{j.User.FirstName} {j.User.LastName}"
                 //Todo my need interviews here j.Interviews.Select()
             });
             return Json(model, JsonRequestBehavior.AllowGet);
@@ -50,13 +47,9 @@ namespace JobTracker.Web.Controllers
                 job.CompanyTitle,
                 job.Description,
                 job.PhoneNumber,
-                job.Status,
+                Status = job.Status.ToString(),
                 job.Url,
-                job.Applied,
-                job.Interviewed,
-                job.Saved,
-                job.Scheduled,
-                job.UserId
+                ApplicantName = $"{job.User.FirstName} {job.User.LastName}"
             };
             return Json(model, JsonRequestBehavior.AllowGet);
         }
@@ -77,20 +70,38 @@ namespace JobTracker.Web.Controllers
                 JobTitle = vm.JobTitle,
                 CompanyTitle = vm.CompanyTitle,
                 Address = vm.Address,
-                Status = vm.Status,
+                Status = JobStatus.Saved,
                 Url = vm.Url,
                 Description = vm.Description,
-                PhoneNumber = vm.PhoneNumber
+                PhoneNumber = vm.PhoneNumber,
+                Created = DateTime.Now,
+                StatusDate = DateTime.Now,
+                User = db.Users.First()
             };
 
             db.Jobs.Add(newJob);
             db.SaveChanges();
 
-            return Json(newJob);
+
+            var model = new
+            {
+                vm.JobTitle,
+                vm.CompanyTitle,
+                vm.Address,
+                Status = JobStatus.Saved,
+                vm.Url,
+                vm.Description,
+                vm.PhoneNumber,
+                Created = DateTime.Now,
+                StatusDate = DateTime.Now
+            };
+
+
+            return Json(model);
         }
 
 
-        [HttpPut]
+        [HttpPost]
         public ActionResult Edit(EditJobVM vm)
         {
             if (!ModelState.IsValid)
@@ -110,14 +121,33 @@ namespace JobTracker.Web.Controllers
             job.JobTitle = vm.JobTitle;
             job.CompanyTitle = vm.CompanyTitle;
             job.Address = vm.Address;
-            job.Status = vm.Status;
             job.Url = vm.Url;
             job.Description = vm.Description;
             job.PhoneNumber = vm.PhoneNumber;
 
+            var newStatus = (JobStatus) Enum.Parse(typeof (JobStatus), vm.Status);
+            if (job.Status != newStatus)
+            {
+                job.Status = newStatus;
+                job.StatusDate = DateTime.Now;
+            }
 
             db.SaveChanges();
-            return Json(job);
+
+            var model = new
+            {
+                vm.JobTitle,
+                vm.CompanyTitle,
+                vm.Address,
+                Status = JobStatus.Saved,
+                vm.Url,
+                vm.Description,
+                vm.PhoneNumber,
+                Created = DateTime.Now,
+                StatusDate = DateTime.Now
+            };
+
+            return Json(model);
         }
 
 

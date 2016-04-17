@@ -183,13 +183,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="JobTrackerWebDbContext.cs" />
-    <Compile Include="Migrations\201604160407256_HackTable.cs" />
-    <Compile Include="Migrations\201604160407256_HackTable.Designer.cs">
-      <DependentUpon>201604160407256_HackTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604161711152_JobData.cs" />
-    <Compile Include="Migrations\201604161711152_JobData.Designer.cs">
-      <DependentUpon>201604161711152_JobData.cs</DependentUpon>
+    <Compile Include="Migrations\201604170147510_InitialCreate.cs" />
+    <Compile Include="Migrations\201604170147510_InitialCreate.Designer.cs">
+      <DependentUpon>201604170147510_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Interview.cs" />
@@ -248,11 +244,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604160407256_HackTable.resx">
-      <DependentUpon>201604160407256_HackTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604161711152_JobData.resx">
-      <DependentUpon>201604161711152_JobData.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604170147510_InitialCreate.resx">
+      <DependentUpon>201604170147510_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
