@@ -10,7 +10,7 @@ using JobTracker.Web.Models;
 
 namespace JobTracker.Web.Controllers
 {
-    public class MVCJobsController : Controller
+    public class MvcJobsController : Controller
     {
         private readonly JobTrackerWebDbContext db = new JobTrackerWebDbContext();
 
@@ -56,7 +56,7 @@ namespace JobTracker.Web.Controllers
                 job.Url,
                 ApplicantName = $"{job.User.FirstName} {job.User.LastName}"
             };
-            return View();
+            return View("Details");
         }
 
         [HttpPost]
@@ -100,7 +100,7 @@ namespace JobTracker.Web.Controllers
                 StatusDate = DateTime.Now
             };
 
-            return View();
+            return View("Create");
         }
 
 
@@ -133,7 +133,7 @@ namespace JobTracker.Web.Controllers
 
             };
 
-            return View();
+            return View("CreateInterview");
         }
     }
 }

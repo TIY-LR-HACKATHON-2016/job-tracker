@@ -52,7 +52,15 @@ namespace JobTracker.Web.Controllers
                 job.PhoneNumber,
                 Status = job.Status.ToString(),
                 job.Url,
-                ApplicantName = $"{job.User.FirstName} {job.User.LastName}"
+                ApplicantName = $"{job.User.FirstName} {job.User.LastName}",
+                Interviews = job.Interviews.Select(i => new
+                {
+                   i.Job,
+                   i.Date,
+                   i.Id
+
+                })
+                
             };
             return Json(model, JsonRequestBehavior.AllowGet);
         }
@@ -129,7 +137,6 @@ namespace JobTracker.Web.Controllers
                newInterview.Date,
                newInterview.Id,
                JobId = newInterview.Job.Id
-               
             };
             return Json(model);
         }
