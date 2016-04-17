@@ -136,7 +136,7 @@ namespace JobTracker.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult Edit(EditJobVM vm)
+        public ActionResult Edit(int id, string status)
         {
             
             if (!ModelState.IsValid)
@@ -147,20 +147,13 @@ namespace JobTracker.Web.Controllers
                 return Json(errorList);
             }
 
-            var job = db.Jobs.Find(vm.JobId);
+            var job = db.Jobs.Find(id);
             if (job == null)
             {
                 return HttpNotFound();
             }
 
-            job.JobTitle = vm.JobTitle;
-            job.CompanyTitle = vm.CompanyTitle;
-            job.Address = vm.Address;
-            job.Url = vm.Url;
-            job.Description = vm.Description;
-            job.PhoneNumber = vm.PhoneNumber;
-
-            var newStatus = (JobStatus) Enum.Parse(typeof (JobStatus), vm.Status);
+            var newStatus = (JobStatus) Enum.Parse(typeof (JobStatus), status);
             if (job.Status != newStatus)
             {
                 job.Status = newStatus;
@@ -171,13 +164,13 @@ namespace JobTracker.Web.Controllers
 
             var model = new
             {
-                vm.JobTitle,
-                vm.CompanyTitle,
-                vm.Address,
-                Status = JobStatus.Saved,
-                vm.Url,
-                vm.Description,
-                vm.PhoneNumber,
+                job.JobTitle,
+                job.CompanyTitle,
+                job.Address,
+                job = job.Status.ToString(),
+                job.Url,
+                job.Description,
+                job.PhoneNumber,
                 Created = DateTime.Now,
                 StatusDate = DateTime.Now
             };
