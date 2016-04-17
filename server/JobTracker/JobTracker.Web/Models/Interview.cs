@@ -7,8 +7,8 @@ namespace JobTracker.Web.Models
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
-        public Job Job { get; set; }
-        public User User  { get; set; }
+        public virtual Job Job { get; set; }
+        public virtual User User  { get; set; }
         
     }
     

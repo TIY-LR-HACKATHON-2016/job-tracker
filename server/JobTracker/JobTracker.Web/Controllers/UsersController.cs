@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+using Faker;
 using JobTracker.Web.Models;
 
 namespace JobTracker.Web.Controllers
@@ -15,23 +10,21 @@ namespace JobTracker.Web.Controllers
         private JobTrackerWebDbContext db = new JobTrackerWebDbContext();
 
         [HttpGet]
-        public ActionResult About( )
+        public ActionResult About()
         {
-            var user = new User();
-            user.FirstName = "Nancy";
-            user.LastName = "Majors";
-            user.Email = "nmajors@gmail.com";
-            user.PhoneNum = Faker.Phone.Number();
-            user.Address = Faker.Address.StreetAddress();
-            user.Resume = Faker.TextFaker.Sentences(20);
-
-            return Json(user,JsonRequestBehavior.AllowGet);
-         }
-
-        //[HttpPut]
-        //public ActionResult Edit()
-        //{
-            
-        //}
+            var user = db.Users.First();
+            var model = new
+            {
+                user.Address,
+                user.Email,
+                user.FirstName,
+                user.LastName,
+                user.PhoneNum,
+                user.Resume,
+                user.CoverLetter,
+                user.Id
+            };
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
     }
 }
