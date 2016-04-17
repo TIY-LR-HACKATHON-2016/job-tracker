@@ -1,0 +1,21 @@
+body{
+  font-family: Helvetica;
+}
+
+.red{
+  background-color: red;
+}
+.linkButton{
+background-color: #6fbab6;
+width: 200px;
+text-decoration: none;
+color: white;
+padding-top: 10px;
+padding-bottom: 10px;
+border-radius: 3px;
+margin: 0 auto;
+text-align: center;
+}
+a:-webkit-any-link {
+    text-decoration: none;
+}

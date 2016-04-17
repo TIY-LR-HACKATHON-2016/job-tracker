@@ -1,0 +1,124 @@
+body {
+  font-family: Helvetica; }
+
+.red {
+  background-color: red; }
+
+.linkButton {
+  background-color: #6fbab6;
+  width: 200px;
+  text-decoration: none;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 3px;
+  margin: 0 auto;
+  text-align: center; }
+
+a:-webkit-any-link {
+  text-decoration: none; }
+
+.myJobs h1 {
+  text-align: center; }
+
+.myJobs a {
+  text-decoration: none; }
+
+.myJobs .addNewJob {
+  background-color: #6fbab6;
+  width: 200px;
+  text-decoration: none;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 3px;
+  margin: 0 auto;
+  text-align: center; }
+
+.myJobs ul {
+  -webkit-padding-start: 0;
+  width: 80%;
+  margin: 15px auto;
+  padding: 0; }
+
+.myJobs .jobRow {
+  list-style: none;
+  display: block;
+  clear: both;
+  background-color: #ddd;
+  line-height: 1.5;
+  padding: 10px; }
+  .myJobs .jobRow .jobTitle {
+    display: inline-block;
+    width: 25%; }
+  .myJobs .jobRow .companyTitle {
+    display: inline-block;
+    width: 25%; }
+  .myJobs .jobRow #jobTitleHeadline, .myJobs .jobRow #companyTitleHeadline {
+    font-weight: 600;
+    font-size: 1.2rem; }
+  .myJobs .jobRow #jobStatusHeadline {
+    background-color: #ddd;
+    padding: 0;
+    color: black;
+    font-weight: 600;
+    font-size: 1.2rem; }
+  .myJobs .jobRow .jobStatus {
+    background-color: #6fbab6;
+    display: inline-block;
+    color: #fff;
+    padding: 8px;
+    border-radius: 3px;
+    margin-left: 10%;
+    width: 100px;
+    text-align: center; }
+  .myJobs .jobRow:nth-child(even) {
+    background-color: #eee; }
+  .myJobs .jobRow .Hired {
+    background-color: #286090; }
+  .myJobs .jobRow .Interviewed {
+    background-color: #B5E6FF; }
+  .myJobs .jobRow .Scheduled {
+    background-color: #449D44; }
+  .myJobs .jobRow .Applied {
+    background-color: #6fbab6; }
+  .myJobs .jobRow .Declined {
+    background-color: #D9534F; }
+  .myJobs .jobRow .Saved {
+    background-color: #EC971F; }
+
+.job {
+  width: 80%;
+  margin: 0 auto; }
+  .job .jobDetailsBlock {
+    background-color: #eee;
+    margin-bottom: 20px; }
+
+.addJob {
+  margin-left: auto;
+  margin-right: auto;
+  background: #ddd;
+  padding: 25px 15px 25px 10px;
+  border: 1px solid #E4E4E4; }
+  .addJob h1 {
+    display: block;
+    text-align: center; }
+  .addJob .addJobInput {
+    width: 30%;
+    margin: 15px auto; }
+  .addJob h4 {
+    margin-bottom: 5px; }
+  .addJob .textbox {
+    line-height: 2.5;
+    border-radius: 3px;
+    border: 1px solid #aaa;
+    width: 100%;
+    padding-left: 10px; }
+  .addJob .submitButton {
+    display: block;
+    margin: 20px auto;
+    font-size: 1.5rem;
+    padding: 5px 10px;
+    background-color: #6fbab6;
+    border-radius: 5px;
+    color: white; }

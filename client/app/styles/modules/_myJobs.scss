@@ -1,0 +1,88 @@
+.myJobs{
+  h1{
+    text-align: center;
+  }
+  a{
+    text-decoration: none;
+  }
+  .addNewJob{
+    background-color: #6fbab6;
+    width: 200px;
+    text-decoration: none;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 3px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  ul{
+    -webkit-padding-start: 0;
+    width: 80%;
+    margin: 15px auto;
+    padding: 0;
+  }
+
+    .jobRow{
+      list-style: none;
+      display: block;
+      clear: both;
+      background-color: #ddd;
+      line-height: 1.5;
+      padding: 10px;
+      .jobTitle{
+        display: inline-block;
+        width: 25%;
+      }
+      .companyTitle{
+        display: inline-block;
+        width: 25%;
+      }
+      #jobTitleHeadline, #companyTitleHeadline{
+        font-weight: 600;
+        font-size: 1.2rem;
+      }
+      #jobStatusHeadline{
+        background-color: #ddd;
+        padding:0;
+        color: black;
+        font-weight: 600;
+        font-size: 1.2rem;
+      }
+
+      .jobStatus{
+        background-color: #6fbab6;
+        display: inline-block;
+        color: #fff;
+        padding: 8px;
+        border-radius: 3px;
+        margin-left: 10%;
+        width: 100px;
+        text-align: center;
+    }
+
+    &:nth-child(even){
+      background-color: #eee;
+    }
+
+    .Hired{
+      background-color: #286090;
+    }
+    .Interviewed{
+      background-color: #B5E6FF;
+    }
+    .Scheduled{
+      background-color: #449D44;
+    }
+    .Applied{
+      background-color: #6fbab6;
+    }
+    .Declined{
+      background-color: #D9534F;
+    }
+    .Saved{
+      background-color: #EC971F;
+    }
+
+  }
+}

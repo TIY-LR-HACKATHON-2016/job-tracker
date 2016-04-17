@@ -1,1 +1,15 @@
-<h1>LOOK AT THIS JOB</h1>
+
+<div class = "job">
+  <h1>LOOK AT THIS JOB</h1>
+  <div class="jobDetailsBlock">
+    <div class="jobDetail">Job Title: {{jobCtrl.job.JobTitle}}</div>
+    <div class="jobDetail">Company Name: {{jobCtrl.job.CompanyTitle}}</div>
+    <div class="jobDetail">Location: {{jobCtrl.job.Address}}</div>
+    <div class="jobDetail">Job Description: {{jobCtrl.job.Description}}</div>
+    <div class="jobDetail">Phone number: {{jobCtrl.job.PhoneNumber}}</div>
+    <div class="jobDetail">Website: {{jobCtrl.job.url}}</div>
+    <div class="jobDetail" ng-repeat="interview in jobCtrl.interviews">
+    <a ui-sref="my_jobs">Go back to your list of jobs</a>
+</div>
+<a ui-sref="add_interview({ Id: jobCtrl.id })"><div class="linkButton">Add Interview</div></a>
+</div>
