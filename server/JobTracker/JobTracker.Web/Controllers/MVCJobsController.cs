@@ -56,7 +56,7 @@ namespace JobTracker.Web.Controllers
                 job.Url,
                 ApplicantName = $"{job.User.FirstName} {job.User.LastName}"
             };
-            return View("Details");
+            return View();
         }
 
         [HttpPost]

@@ -55,10 +55,8 @@ namespace JobTracker.Web.Controllers
                 ApplicantName = $"{job.User.FirstName} {job.User.LastName}",
                 Interviews = job.Interviews.Select(i => new
                 {
-                   i.Job,
                    i.Date,
                    i.Id
-
                 })
                 
             };
