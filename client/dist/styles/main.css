@@ -127,4 +127,14 @@ a:-webkit-any-link {
   width: 80%;
   margin: 0 auto; }
   .addInterview .addInterviewContent {
-    text-align: justify; }
+    width: 40%;
+    margin: 20px auto; }
+    .addInterview .addInterviewContent .addInterviewTitle {
+      width: 100%;
+      text-align: center; }
+    .addInterview .addInterviewContent .addInterviewForm {
+      width: 100%;
+      text-align: center; }
+      .addInterview .addInterviewContent .addInterviewForm input {
+        line-height: 2;
+        width: 40%; }
