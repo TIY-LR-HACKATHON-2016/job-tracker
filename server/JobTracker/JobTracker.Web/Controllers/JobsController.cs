@@ -17,6 +17,7 @@ namespace JobTracker.Web.Controllers
         {
             var model = db.Jobs.Select(j => new
             {
+                j.Id, 
                 j.JobTitle,
                 j.Address,
                 j.CompanyTitle,
@@ -84,7 +85,6 @@ namespace JobTracker.Web.Controllers
             db.Jobs.Add(newJob);
             db.SaveChanges();
 
-
             var model = new
             {
                 vm.JobTitle,
@@ -98,8 +98,7 @@ namespace JobTracker.Web.Controllers
                 StatusDate = DateTime.Now
             };
 
-
-            return Json(model);
+             return Json(model);
         }
 
         [HttpPost]
@@ -203,4 +202,6 @@ namespace JobTracker.Web.Controllers
             base.Dispose(disposing);
         }
     }
+
+   
 }
