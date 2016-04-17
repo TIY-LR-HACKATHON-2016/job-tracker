@@ -22,7 +22,7 @@ namespace JobTracker.Web.Controllers
                 j.PhoneNumber,
                 Status = j.Status.ToString(),
                 j.Url,
-                ApplicantName = $"{j.User.FirstName} {j.User.LastName}"
+                ApplicantName = j.User.FirstName + " " + j.User.LastName
                 //Todo my need interviews here j.Interviews.Select()
             });
             return Json(model, JsonRequestBehavior.AllowGet);
