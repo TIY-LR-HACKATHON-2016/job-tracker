@@ -18,7 +18,7 @@ namespace JobTracker.Web.Controllers
 
     public class EditJobVM
     {
-        public int JobId { get; set; }
+        public int Id { get; set; }
         public string CompanyTitle { get; set; }
         public string Url { get; set; }
         public string JobTitle { get; set; }
