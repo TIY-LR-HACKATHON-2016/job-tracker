@@ -54,7 +54,6 @@ namespace JobTracker.Web.Controllers
                 Url = vm.Url,
                 Description = vm.Description,
                 PhoneNumber = vm.PhoneNumber,
-                Date = DateTime.Now
             };
 
             db.Jobs.Add(newJob);
