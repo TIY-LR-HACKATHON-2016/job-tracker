@@ -15,9 +15,6 @@ namespace JobTracker.Web.Models
         public string Url { get; set; }
 
         [Required]
-        public DateTime Date { get; set; }
-
-        [Required]
         public string JobTitle { get; set; }
 
         public string PhoneNumber { get; set; }
@@ -27,16 +24,12 @@ namespace JobTracker.Web.Models
         [Required]
         public string Description { get; set; }
 
+        public bool Saved { get; set; }
+        public bool Applied { get; set; }
+        public bool Scheduled { get; set; }
+        public bool Interviewed { get; set; }
+
         public virtual ICollection<Interview> Interviews { get; set; } = new List<Interview>();
     }
-
-    public enum Status
-    {
-        Saved,
-        Applied,
-        Scheduled,
-        Interviewed
-    }
-
 
 }
