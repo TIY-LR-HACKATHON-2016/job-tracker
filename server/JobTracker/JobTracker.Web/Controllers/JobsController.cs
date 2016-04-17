@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using FizzWare.NBuilder.Extensions;
 using JobTracker.Web.Models;
 
 namespace JobTracker.Web.Controllers
@@ -97,6 +99,37 @@ namespace JobTracker.Web.Controllers
             };
 
 
+            return Json(model);
+        }
+
+        [HttpPost]
+        public ActionResult CreateInterview(CreateInterviewVM vm)
+        {
+            if (!ModelState.IsValid)
+            {
+                var errorList = (from item in ModelState
+                                 where item.Value.Errors.Any()
+                                 select item.Value.Errors[0].ErrorMessage).ToList();
+                return Json(errorList);
+            }
+
+            Job job = db.Jobs.Where(j => j.Id == vm.JobId).FirstOrDefault();
+            var newInterview = new Interview()
+            {
+                Id = vm.JobId,
+                Job = job,
+                Date = vm.Date,
+                User = db.Users.First()
+
+            };
+            db.Interviews.Add(newInterview);
+            db.SaveChanges();
+            
+            var model = new
+            {
+                vm.Date
+               
+            };
             return Json(model);
         }
 

@@ -12,5 +12,4 @@ namespace JobTracker.Web.Models
         
     }
     
-    
 }

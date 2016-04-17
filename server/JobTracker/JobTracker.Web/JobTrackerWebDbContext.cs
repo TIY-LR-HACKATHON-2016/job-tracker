@@ -20,4 +20,8 @@ public class JobTrackerWebDbContext : DbContext
     public System.Data.Entity.DbSet<JobTracker.Web.Models.User> Users { get; set; }
 
     public System.Data.Entity.DbSet<JobTracker.Web.Models.Job> Jobs { get; set; }
+
+    public System.Data.Entity.DbSet<JobTracker.Web.Models.Interview> Interviews { get; set; }
+
 }
+

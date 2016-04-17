@@ -27,4 +27,13 @@ namespace JobTracker.Web.Controllers
         public string Status { get; set; }
         public string Description { get; set; }
     }
+
+    public class CreateInterviewVM 
+
+    {
+        public int Id { get; set; }
+        public DateTime Date { get; set; }
+        public int JobId { get; set; }
+
+    }
 }
