@@ -1,6 +1,4 @@
-﻿using System;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using JobTracker.Web.Models;
@@ -12,14 +10,28 @@ namespace JobTracker.Web.Controllers
     {
         private readonly JobTrackerWebDbContext db = new JobTrackerWebDbContext();
 
-        // GET: Jobs
         public ActionResult Index()
         {
-            return Json(db.Jobs.ToList(), JsonRequestBehavior.AllowGet);
+            var model = db.Jobs.Select(j => new
+            {
+                j.JobTitle,
+                j.Address,
+                j.CompanyTitle,
+                j.Description,
+                j.PhoneNumber,
+                j.Status,
+                j.Url,
+                j.Applied,
+                j.Interviewed,
+                j.Saved,
+                j.Scheduled,
+                j.UserId
+                //Todo my need interviews here j.Interviews.Select()
+            });
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
 
 
-        // GET: Jobs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -31,7 +43,22 @@ namespace JobTracker.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return Json(job, JsonRequestBehavior.AllowGet);
+            var model = new
+            {
+                job.JobTitle,
+                job.Address,
+                job.CompanyTitle,
+                job.Description,
+                job.PhoneNumber,
+                job.Status,
+                job.Url,
+                job.Applied,
+                job.Interviewed,
+                job.Saved,
+                job.Scheduled,
+                job.UserId
+            };
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -40,8 +67,8 @@ namespace JobTracker.Web.Controllers
             if (!ModelState.IsValid)
             {
                 var errorList = (from item in ModelState
-                                 where item.Value.Errors.Any()
-                                 select item.Value.Errors[0].ErrorMessage).ToList();
+                    where item.Value.Errors.Any()
+                    select item.Value.Errors[0].ErrorMessage).ToList();
                 return Json(errorList);
             }
 
@@ -53,72 +80,55 @@ namespace JobTracker.Web.Controllers
                 Status = vm.Status,
                 Url = vm.Url,
                 Description = vm.Description,
-                PhoneNumber = vm.PhoneNumber,
+                PhoneNumber = vm.PhoneNumber
             };
 
             db.Jobs.Add(newJob);
             db.SaveChanges();
-            
+
             return Json(newJob);
         }
 
 
-        // GET: Jobs/Edit/5
-        public ActionResult Edit(int? id)
+        [HttpPut]
+        public ActionResult Edit(EditJobVM vm)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var errorList = (from item in ModelState
+                    where item.Value.Errors.Any()
+                    select item.Value.Errors[0].ErrorMessage).ToList();
+                return Json(errorList);
             }
-            var job = db.Jobs.Find(id);
+
+            var job = db.Jobs.Find(vm.JobId);
             if (job == null)
             {
                 return HttpNotFound();
             }
-            return Json(job, JsonRequestBehavior.AllowGet);
-        }
 
-        // POST: Jobs/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(
-            [Bind(Include = "Id,UserId,CompanyTitle,Url,Date,JobTitle,PhoneNumber,Address,Description")] Job job)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(job).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            job.JobTitle = vm.JobTitle;
+            job.CompanyTitle = vm.CompanyTitle;
+            job.Address = vm.Address;
+            job.Status = vm.Status;
+            job.Url = vm.Url;
+            job.Description = vm.Description;
+            job.PhoneNumber = vm.PhoneNumber;
+
+
+            db.SaveChanges();
             return Json(job);
         }
 
-        // GET: Jobs/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var job = db.Jobs.Find(id);
-            if (job == null)
-            {
-                return HttpNotFound();
-            }
-            return Json(job, JsonRequestBehavior.AllowGet);
-        }
 
         // POST: Jobs/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             var job = db.Jobs.Find(id);
             db.Jobs.Remove(job);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Content("OK!");
         }
 
         protected override void Dispose(bool disposing)

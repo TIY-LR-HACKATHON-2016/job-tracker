@@ -17,21 +17,17 @@ namespace JobTracker.Web.Controllers
         [HttpGet]
         public ActionResult About( )
         {
-            var user = new User();
-            user.FirstName = "Nancy";
-            user.LastName = "Majors";
-            user.Email = "nmajors@gmail.com";
-            user.PhoneNum = Faker.Phone.Number();
-            user.Address = Faker.Address.StreetAddress();
-            user.Resume = Faker.TextFaker.Sentences(20);
+            var user = new User
+            {
+                FirstName = "Nancy",
+                LastName = "Majors",
+                Email = "nmajors@gmail.com",
+                PhoneNum = Faker.Phone.Number(),
+                Address = Faker.Address.StreetAddress(),
+                Resume = Faker.TextFaker.Sentences(20)
+            };
 
             return Json(user,JsonRequestBehavior.AllowGet);
          }
-
-        //[HttpPut]
-        //public ActionResult Edit()
-        //{
-            
-        //}
     }
 }
