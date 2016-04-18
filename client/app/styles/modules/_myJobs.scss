@@ -2,9 +2,9 @@
   h1{
     text-align: center;
   }
-  a{
-    text-decoration: none;
-  }
+  // a{
+  //   text-decoration: none;
+  // }
   .addNewJob{
     background-color: #6fbab6;
     width: 200px;
@@ -16,25 +16,23 @@
     margin: 0 auto;
     text-align: center;
   }
-  ul{
+  .jtList{
     -webkit-padding-start: 0;
     width: 80%;
     margin: 15px auto;
     padding: 0;
-  }
-
-    .jobRow{
+    &--row{
       list-style: none;
       display: block;
       clear: both;
       background-color: #ddd;
       line-height: 1.5;
       padding: 10px;
-      .jobTitle{
+      &--item1{
         display: inline-block;
         width: 25%;
       }
-      .companyTitle{
+      &--item2{
         display: inline-block;
         width: 25%;
       }
@@ -49,8 +47,7 @@
         font-weight: 600;
         font-size: 1.2rem;
       }
-
-      .jobStatus{
+      &--item3{
         background-color: #6fbab6;
         display: inline-block;
         color: #fff;
@@ -85,4 +82,5 @@
     }
 
   }
+}
 }

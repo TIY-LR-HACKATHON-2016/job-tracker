@@ -4,18 +4,18 @@
     <div class="addNewJob">
       Add New Job</div></a>
 
-  <ul class="jobsList">
-    <li class="jobRow">
-      <div class="jobTitle" id="jobTitleHeadline">Job Title</div>
-      <div class="companyTitle" id="companyTitleHeadline">Company Name </div>
-      <div class="jobStatus" id="jobStatusHeadline">Status</div>
-    <li class="jobRow" ng-repeat="job in jobsCtrl.jobs">
+  <ul class="jtList">
+    <li class="jtList--row">
+      <div class="jtList--row--item1" id="jobTitleHeadline">Job Title</div>
+      <div class="jtList--row--item2" id="companyTitleHeadline">Company Name </div>
+      <div class="jtList--row--item3" id="jobStatusHeadline">Status</div>
+    <li class="jtList--row" ng-repeat="job in jobsCtrl.jobs">
 
-      <div class="jobTitle">
+      <div class="jtList--row--item1">
         <a ui-sref="job({ Id: job.Id })">{{ job.JobTitle }}</a>
       </div>
-      <div class="companyTitle" ng-model="job">{{ job.CompanyTitle }} </div>
-      <div class="jobStatus {{job.Status}}" ng-click="jobsCtrl.toggleEditStatus(job)">
+      <div class="jtList--row--item2" ng-model="job">{{ job.CompanyTitle }} </div>
+      <div class="jtList--row--item3 {{job.Status}}" ng-click="jobsCtrl.toggleEditStatus(job)">
 
       <!--change value to update status -->
         <span ng-if="job.editing !== true">{{ job.Status }}</span>
