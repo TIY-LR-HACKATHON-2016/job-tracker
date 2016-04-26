@@ -2,9 +2,6 @@
   h1{
     text-align: center;
   }
-  // a{
-  //   text-decoration: none;
-  // }
   .addNewJob{
     background-color: #6fbab6;
     width: 200px;
@@ -15,6 +12,17 @@
     border-radius: 3px;
     margin: 0 auto;
     text-align: center;
+  }
+  #jobTitleHeadline, #companyTitleHeadline{
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+  #jobStatusHeadline{
+    background-color: #ddd;
+    padding:0;
+    color: black;
+    font-weight: 600;
+    font-size: 1.2rem;
   }
   .jtList{
     -webkit-padding-start: 0;
@@ -36,17 +44,6 @@
         display: inline-block;
         width: 25%;
       }
-      #jobTitleHeadline, #companyTitleHeadline{
-        font-weight: 600;
-        font-size: 1.2rem;
-      }
-      #jobStatusHeadline{
-        background-color: #ddd;
-        padding:0;
-        color: black;
-        font-weight: 600;
-        font-size: 1.2rem;
-      }
       &--item3{
         background-color: #6fbab6;
         display: inline-block;
@@ -54,33 +51,50 @@
         padding: 8px;
         border-radius: 3px;
         margin-left: 10%;
-        width: 100px;
+        width: 120px;
         text-align: center;
-    }
-
+        i{
+          float: right;
+          padding: 3px 10px;
+          &:hover{
+            cursor: pointer;
+          }
+        }
+      }
+      // &--item4{
+      //   background-color: #6fbab6;
+      //   display: inline-block;
+      //   // box-sizing: border-box;
+      //   color: #fff;
+      //   padding: 10px 0;
+      //   font-size: .8rem;
+      //   border-radius: 3px;
+      //   border: none;
+      //   width: 100px;
+      //   text-align: center;
+      //
+      // }
     &:nth-child(even){
       background-color: #eee;
     }
-
-    .Hired{
-      background-color: #286090;
-    }
-    .Interviewed{
-      background-color: #B5E6FF;
-    }
-    .Scheduled{
-      background-color: #449D44;
-    }
-    .Applied{
-      background-color: #6fbab6;
-    }
-    .Declined{
-      background-color: #D9534F;
-    }
-    .Saved{
-      background-color: #EC971F;
-    }
-
   }
+}
+.Hired{
+  background-color: #286090;
+}
+.Interviewed{
+  background-color: #B5E6FF;
+}
+.Scheduled{
+  background-color: #449D44;
+}
+.Applied{
+  background-color: #6fbab6;
+}
+.Declined{
+  background-color: #D9534F;
+}
+.Saved{
+  background-color: #EC971F;
 }
 }

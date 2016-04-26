@@ -14,6 +14,14 @@ class MyJobsController {
     job.editing = true;
   }
 
+  // hasInterviews(){
+  //   this.jobs.forEach((j) =>{
+  //     if j.
+  //   })
+
+// }
+
+
   updateJob(job) {
     console.log(job);
     this._$http
@@ -21,11 +29,9 @@ class MyJobsController {
         {
         Status: job.Status
         })
-
       .then((response) => {
+        job.editing = false;
       });
-      job.editing = false;
-
   }
 
 
@@ -35,6 +41,9 @@ class MyJobsController {
     .then((response) => {
 
       this.jobs = response.data;
+      this.jobs.forEach((j) => {
+        console.log(j);
+      });
       // console.log(this.jobs);
     });
 

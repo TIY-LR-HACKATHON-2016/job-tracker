@@ -1,8 +1,17 @@
-.job{
+.jtList{
+  -webkit-padding-start: 0;
   width: 80%;
-  margin: 0 auto;
-  .jobDetailsBlock{
-    background-color: #eee;
-    margin-bottom: 20px;
+  margin: 15px auto;
+  padding: 0;
+  &--row{
+    list-style: none;
+    display: block;
+    clear: both;
+    background-color: #ddd;
+    line-height: 1.5;
+    padding: 10px;
+    &:nth-child(even){
+      background-color: #eee;
+    }
   }
 }

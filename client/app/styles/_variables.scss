@@ -1,0 +1,35 @@
+// @mixin jtList{
+//     -webkit-padding-start: 0;
+//     width: 80%;
+//     margin: 15px auto;
+//     padding: 0;
+//     &--row{
+//       list-style: none;
+//       display: block;
+//       clear: both;
+//       background-color: #ddd;
+//       line-height: 1.5;
+//       padding: 10px;
+//       &--item1{
+//         display: inline-block;
+//         width: 25%;
+//       }
+//       &--item2{
+//         display: inline-block;
+//         width: 25%;
+//       }
+//       &--item3{
+//         background-color: #6fbab6;
+//         display: inline-block;
+//         color: #fff;
+//         padding: 8px;
+//         border-radius: 3px;
+//         margin-left: 10%;
+//         width: 100px;
+//         text-align: center;
+//       }
+//     &:nth-child(even){
+//       background-color: #eee;
+//     }
+//   }
+// }

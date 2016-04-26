@@ -18,6 +18,9 @@ body {
 a:-webkit-any-link {
   text-decoration: none; }
 
+.bold {
+  font-weight: 600; }
+
 .myJobs h1 {
   text-align: center; }
 
@@ -31,6 +34,17 @@ a:-webkit-any-link {
   border-radius: 3px;
   margin: 0 auto;
   text-align: center; }
+
+.myJobs #jobTitleHeadline, .myJobs #companyTitleHeadline {
+  font-weight: 600;
+  font-size: 1.2rem; }
+
+.myJobs #jobStatusHeadline {
+  background-color: #ddd;
+  padding: 0;
+  color: black;
+  font-weight: 600;
+  font-size: 1.2rem; }
 
 .myJobs .jtList {
   -webkit-padding-start: 0;
@@ -50,15 +64,6 @@ a:-webkit-any-link {
     .myJobs .jtList--row--item2 {
       display: inline-block;
       width: 25%; }
-    .myJobs .jtList--row #jobTitleHeadline, .myJobs .jtList--row #companyTitleHeadline {
-      font-weight: 600;
-      font-size: 1.2rem; }
-    .myJobs .jtList--row #jobStatusHeadline {
-      background-color: #ddd;
-      padding: 0;
-      color: black;
-      font-weight: 600;
-      font-size: 1.2rem; }
     .myJobs .jtList--row--item3 {
       background-color: #6fbab6;
       display: inline-block;
@@ -66,29 +71,48 @@ a:-webkit-any-link {
       padding: 8px;
       border-radius: 3px;
       margin-left: 10%;
-      width: 100px;
+      width: 120px;
       text-align: center; }
+      .myJobs .jtList--row--item3 i {
+        float: right;
+        padding: 3px 10px; }
+        .myJobs .jtList--row--item3 i:hover {
+          cursor: pointer; }
     .myJobs .jtList--row:nth-child(even) {
       background-color: #eee; }
-    .myJobs .jtList--row .Hired {
-      background-color: #286090; }
-    .myJobs .jtList--row .Interviewed {
-      background-color: #B5E6FF; }
-    .myJobs .jtList--row .Scheduled {
-      background-color: #449D44; }
-    .myJobs .jtList--row .Applied {
-      background-color: #6fbab6; }
-    .myJobs .jtList--row .Declined {
-      background-color: #D9534F; }
-    .myJobs .jtList--row .Saved {
-      background-color: #EC971F; }
 
-.job {
+.myJobs .Hired {
+  background-color: #286090; }
+
+.myJobs .Interviewed {
+  background-color: #B5E6FF; }
+
+.myJobs .Scheduled {
+  background-color: #449D44; }
+
+.myJobs .Applied {
+  background-color: #6fbab6; }
+
+.myJobs .Declined {
+  background-color: #D9534F; }
+
+.myJobs .Saved {
+  background-color: #EC971F; }
+
+.jtList {
+  -webkit-padding-start: 0;
   width: 80%;
-  margin: 0 auto; }
-  .job .jobDetailsBlock {
-    background-color: #eee;
-    margin-bottom: 20px; }
+  margin: 15px auto;
+  padding: 0; }
+  .jtList--row {
+    list-style: none;
+    display: block;
+    clear: both;
+    background-color: #ddd;
+    line-height: 1.5;
+    padding: 10px; }
+    .jtList--row:nth-child(even) {
+      background-color: #eee; }
 
 .addJob {
   margin-left: auto;

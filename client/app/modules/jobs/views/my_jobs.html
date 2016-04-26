@@ -2,30 +2,31 @@
   <h1>LOOK AT THESE JOBS</h1>
   <a ui-sref="add_job">
     <div class="addNewJob">
-      Add New Job</div></a>
+      Add New Job</div>
+  </a>
 
   <ul class="jtList">
     <li class="jtList--row">
       <div class="jtList--row--item1" id="jobTitleHeadline">Job Title</div>
       <div class="jtList--row--item2" id="companyTitleHeadline">Company Name </div>
       <div class="jtList--row--item3" id="jobStatusHeadline">Status</div>
-    <li class="jtList--row" ng-repeat="job in jobsCtrl.jobs">
+      <li class="jtList--row" ng-repeat="job in jobsCtrl.jobs">
 
-      <div class="jtList--row--item1">
-        <a ui-sref="job({ Id: job.Id })">{{ job.JobTitle }}</a>
-      </div>
-      <div class="jtList--row--item2" ng-model="job">{{ job.CompanyTitle }} </div>
-      <div class="jtList--row--item3 {{job.Status}}" ng-click="jobsCtrl.toggleEditStatus(job)">
-
-      <!--change value to update status -->
-        <span ng-if="job.editing !== true">{{ job.Status }}</span>
-
-        <div ng-if="job.editing">
-          <select ng-model="job.Status" ng-hide="job.editing !== true" ng-change="jobsCtrl.updateJob(job)">
-            <option ng-repeat="status in jobsCtrl.statuses" value="{{ status }}">{{ status}}</option>
-          </select>
+        <div class="jtList--row--item1">
+          <a ui-sref="job({ Id: job.Id })">{{ job.JobTitle }}</a>
         </div>
-      </div>
-  </li>
-</ul>
+        <div class="jtList--row--item2" ng-model="job">{{ job.CompanyTitle }} </div>
+        <div class="jtList--row--item3 {{job.Status}}">
+          <!--change value to update status -->
+          <span ng-if="job.editing !== true">{{ job.Status }}
+            <i class="fa fa-pencil" ng-click="jobsCtrl.toggleEditStatus(job)"></i>
+          </span>
+
+            <select  ng-model="job.Status" ng-hide="job.editing !== true" ng-change="jobsCtrl.updateJob(job)">
+              <option ng-repeat="status in jobsCtrl.statuses" value="{{ status }}">{{ status}}</option>
+            </select>
+        </div>
+      </li>
+  </ul>
 </div>
+<!-- <span ng repeat="job in jobsCtrl.jobs">{{ job.prop }}</span> -->
